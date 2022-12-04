@@ -1,0 +1,66 @@
+
+
+class Solution
+{ 
+    static class Pair
+    {
+        int min;
+        int max;
+    }
+    
+    public static int findSum(int A[],int N) 
+    {
+        Pair minmix= new Pair();
+        int sum=0;
+        int i=0;
+        if(N%2==0)
+        {
+            if(A[0]>A[1])
+            {
+                minmix.max=A[0];
+                minmix.min=A[1];
+            }
+            else
+            {
+                minmix.max=A[1];
+                minmix.min=A[0];
+            }
+            i=2;
+        }
+        else
+        {
+            minmix.max=A[0];
+            minmix.min=A[0];
+            i=1;
+        }
+        while(i<N-1)
+        {
+            if(A[i]<A[i+1])
+            {
+                if(minmix.max<A[i+1])
+                {
+                    minmix.max=A[i+1];
+                }
+                if(minmix.min>A[i])
+                {
+                    minmix.min=A[i];
+                }
+            }
+            else
+            {
+                if(minmix.max<A[i])
+                {
+                    minmix.max=A[i];
+                }
+                if(minmix.min>A[i+1])
+                {
+                    minmix.min=A[i+1];
+                }
+            }
+            i=i+2;
+        }
+        sum=minmix.max+minmix.min;
+        return sum;
+    }
+    
+}
